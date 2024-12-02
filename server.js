@@ -15,7 +15,19 @@ app.use(express.json());
 app.post("/proxy", async (req, res) => {
   try {
     const response = await axios.post(
-      "https://script.google.com/macros/s/AKfycbxlZEr2yOb5aDzribupHhX998W3OUpEd6WU5eHdkcjYdM92VDqkXfCMOECDd3XHBKUerQ/exec",
+      "https://script.google.com/macros/s/AKfycbxNp0x8YoO8c_6Sh0O_TrNiuZpU3b5kppHNcFdZNx3MJBM9oI_kpAEpBKHG1WZPQ0Uk/exec",
+      req.body
+    );
+    res.send(response.data);
+  } catch (error) {
+    res.status(500).send("Error: " + error.message);
+  }
+});
+
+app.post("/save", async (req, res) => {
+  try {
+    const response = await axios.post(
+      "https://script.google.com/macros/s/AKfycbxzDejvY_Z_5fSQLgSPfMll809SHOJAIuxxoisOy7GhsdeE7WLZ-QLodwy2yfjPHLE/exec",
       req.body
     );
     res.send(response.data);
